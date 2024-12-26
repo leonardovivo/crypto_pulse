@@ -6,7 +6,10 @@ class CryptoPulseHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(),
+      child: Scaffold(
+          body: Container(
+        color: const Color.fromARGB(255, 41, 13, 71),
+      )),
     );
   }
 }
