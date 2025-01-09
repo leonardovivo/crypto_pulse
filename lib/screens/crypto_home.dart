@@ -32,7 +32,6 @@ class CryptoPulseHome extends StatelessWidget {
                   ),
                 ),
               ),
-
               Positioned(
                 top: 140,
                 left: 100,
@@ -64,47 +63,44 @@ class CryptoPulseHome extends StatelessWidget {
                     children: [
                       ClickableImage(
                         imagePath: 'assets/images/bitcoin.png',
-                        onTap: () => print('Bitcoin Clicked!'),
+                        onTap: () =>
+                            Navigator.of(context).pushNamed('/bitcoin'),
                       ),
-
                       ClickableImage(
                         imagePath: 'assets/images/ethereum.png',
-                        onTap: () => print('Ethereum Clicked!'),
+                        onTap: () =>
+                            Navigator.of(context).pushNamed('/ethereum'),
                       ),
-
                       ClickableImage(
                         imagePath: 'assets/images/xrp.png',
-                        onTap: () => print('Ripple Clicked!'),
+                        onTap: () => Navigator.of(context).pushNamed('/xrp'),
                       ),
-
                       ClickableImage(
                         imagePath: 'assets/images/dogecoin.png',
-                        onTap: () => print('Dogecoin Clicked!'),
+                        onTap: () =>
+                            Navigator.of(context).pushNamed('/dogecoin'),
                       ),
-
                       ClickableImage(
                         imagePath: 'assets/images/tether.png',
-                        onTap: () => print('Litecoin Clicked!'),
+                        onTap: () => Navigator.of(context).pushNamed('/tether'),
                       ),
-
                       ClickableImage(
                         imagePath: 'assets/images/cardano.png',
-                        onTap: () => print('Cardano Clicked!'),
+                        onTap: () =>
+                            Navigator.of(context).pushNamed('/cardano'),
                       ),
-
                       ClickableImage(
                         imagePath: 'assets/images/usd.png',
-                        onTap: () => print('Polkadot Clicked!'),
+                        onTap: () => Navigator.of(context).pushNamed('/usd'),
                       ),
-
                       ClickableImage(
                         imagePath: 'assets/images/solana.png',
-                        onTap: () => print('Solana Clicked!'),
+                        onTap: () => Navigator.of(context).pushNamed('/solana'),
                       ),
-
                       ClickableImage(
                         imagePath: 'assets/images/binance.png',
-                        onTap: () => print('Binance Clicked!'),
+                        onTap: () =>
+                            Navigator.of(context).pushNamed('/binance'),
                       ),
                     ],
                   ),
