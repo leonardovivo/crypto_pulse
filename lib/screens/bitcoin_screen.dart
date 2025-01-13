@@ -1,8 +1,12 @@
+import 'package:crypto_pulse/widgets/color.dart';
+import 'package:crypto_pulse/widgets/detail_item.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class BitcoinScreen extends StatefulWidget {
+  const BitcoinScreen({super.key});
+
   @override
   _BitcoinScreenState createState() => _BitcoinScreenState();
 }
@@ -30,60 +34,108 @@ class _BitcoinScreenState extends State<BitcoinScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Bitcoin'),
-      ),
-      body: cryptoData == null
-          ? Center(child: CircularProgressIndicator())
-          : Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ListView(
-                children: [
-                  _buildDetailItem('Name', cryptoData!['name']),
-                  _buildDetailItem('Symbol', cryptoData!['symbol']),
-                  _buildDetailItem('Rank', '${cryptoData!['rank']}'),
-                  _buildDetailItem(
-                      'Price (USD)', '\$${cryptoData!['price_usd']}'),
-                  _buildDetailItem(
-                      '24h Change', '${cryptoData!['percent_change_24h']}%'),
-                  _buildDetailItem(
-                      '1h Change', '${cryptoData!['percent_change_1h']}%'),
-                  _buildDetailItem(
-                      '7d Change', '${cryptoData!['percent_change_7d']}%'),
-                  _buildDetailItem(
-                      'Market Cap', '\$${cryptoData!['market_cap_usd']}'),
-                  _buildDetailItem(
-                      'Volume (24h)', '\$${cryptoData!['volume24']}'),
-                  _buildDetailItem(
-                      'Circulating Supply', '${cryptoData!['csupply']}'),
-                  _buildDetailItem(
-                      'Price (BTC)', '\$${cryptoData!['price_btc']}'),
-                  _buildDetailItem(
-                      'Total Supply', '\$${cryptoData!['tsupply']}'),
-                  _buildDetailItem(
-                      'Maximum Supply', '\$${cryptoData!['msupply']}'),
-                ],
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
+          children: [
+            // Imagem de fundo
+            Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/fundo_moedas.jpg'),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-    );
-  }
+            // AppBar transparente
+            Positioned(
+              top: 50,
+              left: 123,
+              child: Text(
+                'Bitcoin',
+                style: TextStyle(
+                  color: CyberYellow.cyberpunkYellow,
+                  fontFamily: 'Rovelink',
+                  fontSize: 50,
+                  fontWeight: FontWeight.bold,
+                  shadows: [
+                    Shadow(
+                      color: Colors.blueAccent,
+                      blurRadius: 10,
+                      offset: Offset(6, 5),
+                    ),
+                  ],
+                ),
+              ),
+            ),
 
-  Widget _buildDetailItem(String title, String value) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          Text(
-            value,
-            style: TextStyle(fontSize: 18),
-          ),
-        ],
+            // Conteúdo principal
+            cryptoData == null
+                ? Center(
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation(Colors.greenAccent),
+                    ),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: ListView(
+                      children: [
+                        SizedBox(height: 180),
+                        DetailItem(title: 'Name', value: cryptoData!['name']),
+                        SizedBox(height: 100),
+                        DetailItem(
+                            title: 'Symbol', value: cryptoData!['symbol']),
+                        SizedBox(height: 100),
+                        DetailItem(
+                            title: 'Rank', value: '${cryptoData!['rank']}'),
+                        SizedBox(height: 100),
+                        DetailItem(
+                            title: 'Price (USD)',
+                            value: '\$${cryptoData!['price_usd']}'),
+                        SizedBox(height: 100),
+                        DetailItem(
+                            title: '24h Change',
+                            value: '${cryptoData!['percent_change_24h']}%'),
+                        SizedBox(height: 100),
+                        DetailItem(
+                            title: '1h Change',
+                            value: '${cryptoData!['percent_change_1h']}%'),
+                        SizedBox(height: 100),
+                        DetailItem(
+                            title: '7d Change',
+                            value: '${cryptoData!['percent_change_7d']}%'),
+                        SizedBox(height: 100),
+                        DetailItem(
+                            title: 'Market Cap',
+                            value: '\$${cryptoData!['market_cap_usd']}'),
+                        SizedBox(height: 100),
+                        DetailItem(
+                            title: 'Volume (24h)',
+                            value: '\$${cryptoData!['volume24']}'),
+                        SizedBox(height: 100),
+                        DetailItem(
+                            title: 'Circulating Supply',
+                            value: '${cryptoData!['csupply']}'),
+                        SizedBox(height: 100),
+                        DetailItem(
+                            title: 'Price (BTC)',
+                            value: '\$${cryptoData!['price_btc']}'),
+                        SizedBox(height: 100),
+                        DetailItem(
+                            title: 'Total Supply',
+                            value: '\$${cryptoData!['tsupply']}'),
+                        SizedBox(height: 100),
+                        DetailItem(
+                            title: 'Maximum Supply',
+                            value: '\$${cryptoData!['msupply']}'),
+                        SizedBox(height: 100),
+                      ],
+                    ),
+                  ),
+          ],
+        ),
       ),
     );
   }
