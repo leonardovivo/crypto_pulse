@@ -1,6 +1,7 @@
 import 'package:crypto_pulse/widgets/color.dart';
 import 'package:crypto_pulse/widgets/detail_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -68,7 +69,14 @@ class _BitcoinScreenState extends State<BitcoinScreen> {
                           ),
                         ],
                       ),
-                    ),
+                    )
+                        .animate(
+                          onPlay: (controller) => controller.repeat(),
+                        )
+                        .shimmer(
+                          duration: 2000.ms,
+                          color: CyberYellow.cyberpunkYellow,
+                        ),
                   ),
                   cryptoData == null
                       ? Center(

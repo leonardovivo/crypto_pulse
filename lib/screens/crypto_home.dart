@@ -1,6 +1,7 @@
 import 'package:crypto_pulse/widgets/clickable_image.dart';
 import 'package:crypto_pulse/widgets/color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class CryptoPulseHome extends StatelessWidget {
   const CryptoPulseHome({super.key});
@@ -50,7 +51,14 @@ class CryptoPulseHome extends StatelessWidget {
                       ),
                     ],
                   ),
-                ),
+                )
+                    .animate(
+                      onPlay: (controller) => controller.repeat(),
+                    )
+                    .shimmer(
+                      duration: 2000.ms,
+                      color: CyberYellow.cyberpunkYellow,
+                    ),
               ),
               Positioned.fill(
                 top: 300,
