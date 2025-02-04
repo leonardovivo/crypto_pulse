@@ -1,3 +1,13 @@
+import 'package:crypto_pulse/animations/transition_animation_to.dart';
+import 'package:crypto_pulse/screens/binance_screen.dart';
+import 'package:crypto_pulse/screens/bitcoin_screen.dart';
+import 'package:crypto_pulse/screens/cardano_screen.dart';
+import 'package:crypto_pulse/screens/dogecoin_screen.dart';
+import 'package:crypto_pulse/screens/ethereum_screen.dart';
+import 'package:crypto_pulse/screens/solana_screen.dart';
+import 'package:crypto_pulse/screens/tether_screen.dart';
+import 'package:crypto_pulse/screens/usd_screen.dart';
+import 'package:crypto_pulse/screens/xrp_screen.dart';
 import 'package:crypto_pulse/widgets/clickable_image.dart';
 import 'package:crypto_pulse/widgets/color.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +15,10 @@ import 'package:flutter_animate/flutter_animate.dart';
 
 class CryptoPulseHome extends StatelessWidget {
   const CryptoPulseHome({super.key});
+
+  void _navigateTo(BuildContext context, Widget screen) {
+    Navigator.of(context).push(TransitionAnimationTo(page: screen));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,44 +85,39 @@ class CryptoPulseHome extends StatelessWidget {
                     children: [
                       ClickableImage(
                         imagePath: 'assets/images/bitcoin.png',
-                        onTap: () =>
-                            Navigator.of(context).pushNamed('/bitcoin'),
+                        onTap: () => _navigateTo(context, BitcoinScreen()),
                       ),
                       ClickableImage(
                         imagePath: 'assets/images/ethereum.png',
-                        onTap: () =>
-                            Navigator.of(context).pushNamed('/ethereum'),
+                        onTap: () => _navigateTo(context, EthereumScreen()),
                       ),
                       ClickableImage(
                         imagePath: 'assets/images/xrp.png',
-                        onTap: () => Navigator.of(context).pushNamed('/xrp'),
+                        onTap: () => _navigateTo(context, XrpScreen()),
                       ),
                       ClickableImage(
                         imagePath: 'assets/images/dogecoin.png',
-                        onTap: () =>
-                            Navigator.of(context).pushNamed('/dogecoin'),
+                        onTap: () => _navigateTo(context, DogecoinScreen()),
                       ),
                       ClickableImage(
                         imagePath: 'assets/images/tether.png',
-                        onTap: () => Navigator.of(context).pushNamed('/tether'),
+                        onTap: () => _navigateTo(context, TetherScreen()),
                       ),
                       ClickableImage(
                         imagePath: 'assets/images/cardano.png',
-                        onTap: () =>
-                            Navigator.of(context).pushNamed('/cardano'),
+                        onTap: () => _navigateTo(context, CardanoScreen()),
                       ),
                       ClickableImage(
                         imagePath: 'assets/images/usd.png',
-                        onTap: () => Navigator.of(context).pushNamed('/usd'),
+                        onTap: () => _navigateTo(context, UsdScreen()),
                       ),
                       ClickableImage(
                         imagePath: 'assets/images/solana.png',
-                        onTap: () => Navigator.of(context).pushNamed('/solana'),
+                        onTap: () => _navigateTo(context, SolanaScreen()),
                       ),
                       ClickableImage(
                         imagePath: 'assets/images/binance.png',
-                        onTap: () =>
-                            Navigator.of(context).pushNamed('/binance'),
+                        onTap: () => _navigateTo(context, BinanceScreen()),
                       ),
                     ],
                   ),
