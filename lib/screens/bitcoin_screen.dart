@@ -1,5 +1,7 @@
+import 'package:crypto_pulse/screens/crypto_home.dart';
 import 'package:crypto_pulse/widgets/color.dart';
 import 'package:crypto_pulse/widgets/detail_item.dart';
+import 'package:crypto_pulse/animations/transition_animation_back.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:http/http.dart' as http;
@@ -33,27 +35,33 @@ class _BitcoinScreenState extends State<BitcoinScreen> {
     }
   }
 
+   void _navigateBack(BuildContext context) {
+    Navigator.of(context)
+        .pushReplacement(TransitionAnimationBack(page: CryptoPulseHome()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         body: Stack(
           children: [
-            Container(
-              height: double.infinity,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/fundo_moedas.jpg'),
-                  fit: BoxFit.cover,
+            Positioned.fill(
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/fundo_moedas.jpg'),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
             SingleChildScrollView(
               child: Column(
                 children: [
+                  SizedBox(height: 80),
                   Padding(
-                    padding: const EdgeInsets.only(top: 50, left: 10),
+                    padding: const EdgeInsets.only(left: 10),
                     child: Text(
                       'Bitcoin',
                       style: TextStyle(
@@ -148,6 +156,18 @@ class _BitcoinScreenState extends State<BitcoinScreen> {
                           ),
                         ),
                 ],
+              ),
+            ),
+            Positioned(
+              top: 20,
+              left: 10,
+              child: GestureDetector(
+                onTap: () => _navigateBack(context),
+                child: Container(
+                  padding: EdgeInsets.all(8),
+                  child: Icon(Icons.arrow_back,
+                      color: CyberYellow.cyberpunkYellow, size: 30),
+                ),
               ),
             ),
           ],
